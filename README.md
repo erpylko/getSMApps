@@ -1,4 +1,4 @@
-# Project Name
+# getSMApps
 
 _Get applications installed from devices with Meraki Systems Manager_
 
