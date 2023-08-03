@@ -125,7 +125,7 @@ def main(SORT, apikey, net, pc, ignore):
 
         devices.append((name, id, pcsw))
 
-    if SORT == 'app':
+    if SORT == 'apps':
         print ("Apps on systems")
         for app in sorted(all_software - sysapps):
             print("  ",app)
