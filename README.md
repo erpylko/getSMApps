@@ -4,8 +4,6 @@ _Get applications installed from devices with Meraki Systems Manager_
 
 ---
 
-Project short description and introduction.
-
 This python program leverages APIs to the Meraki dashboard to pull all the software installed on all the devices. Output can be a list of all the software or a list of software per machine. Filtering can be accomplished by a file that includes applications to ignore (one per line)
 
 ## Features
