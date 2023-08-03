@@ -27,15 +27,15 @@ usage: getsw.py [-h] [-a APIKEY] [-n NET] [-p PC] [-i IGNORE] {apps,system}
 
 Report apps in a Meraki Systems Manager network
 
-positional arguments:
-  {apps,system}         Sort by apps or system
+positional arguments:<br>
+&emsp;{apps,system}         Sort by apps or system
 
 options:<br>
-  -h, --help                    show this help message and exit<br>
-  -a APIKEY, --apikey APIKEY    Dashboard API KEY<br>
-  -n NET, --net NET             Network ID<br>
-  -p PC, --pc PC                List apps for 1 pc<br>
-  -i IGNORE, --ignore IGNORE    List of apps to ignore<br>
+&emsp;-h, --help                    show this help message and exit<br>
+&emsp;-a APIKEY, --apikey APIKEY    Dashboard API KEY<br>
+&emsp;-n NET, --net NET             Network ID<br>
+&emsp;-p PC, --pc PC                List apps for 1 pc<br>
+&emsp;-i IGNORE, --ignore IGNORE    List of apps to ignore<br>
 
 ## Installation
 
