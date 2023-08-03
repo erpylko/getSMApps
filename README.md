@@ -30,12 +30,12 @@ Report apps in a Meraki Systems Manager network
 positional arguments:
   {apps,system}         Sort by apps or system
 
-options:
-  -h, --help                    show this help message and exit
-  -a APIKEY, --apikey APIKEY    Dashboard API KEY
-  -n NET, --net NET             Network ID
-  -p PC, --pc PC                List apps for 1 pc
-  -i IGNORE, --ignore IGNORE    List of apps to ignore
+options:<br>
+  -h, --help                    show this help message and exit<br>
+  -a APIKEY, --apikey APIKEY    Dashboard API KEY<br>
+  -n NET, --net NET             Network ID<br>
+  -p PC, --pc PC                List apps for 1 pc<br>
+  -i IGNORE, --ignore IGNORE    List of apps to ignore<br>
 
 ## Installation
 
