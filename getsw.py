@@ -24,7 +24,9 @@ or implied.
 # 
 import meraki
 import plac
+from alive_progress import alive_it
 import os
+import time
 
 #
 # The API key and network ID can be used multiple ways.
@@ -104,7 +106,9 @@ def main(SORT, apikey, net, pc, ignore):
     all_software = set()
 
     # iterate through all devices, build the list of all software in the net
-    for device in device_list:
+#    for device in device_list:
+    print("Processing",len(device_list),"systems:")
+    for device in alive_it(device_list):
         name = device['name']
 
 # skip all the machines except the one specified on the command line
