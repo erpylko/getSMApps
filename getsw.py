@@ -95,8 +95,11 @@ def main(SORT, apikey, net, pc, ignore):
         sysapps = ignoreList(ignore)
 
     # create dashboard object
+    print("Connecting to Meraki Dashboard...")
     dashboard = meraki.DashboardAPI(apikey, output_log=False, suppress_logging=True)
+  
     # get a list of all devices
+    print("Gathering devices...")
     device_list = dashboard.sm.getNetworkSmDevices(net)
 
     # create a list that includes device name, id, apps
@@ -106,29 +109,31 @@ def main(SORT, apikey, net, pc, ignore):
     all_software = set()
 
     # iterate through all devices, build the list of all software in the net
-#    for device in device_list:
-    print("Processing",len(device_list),"systems:")
-    for device in alive_it(device_list):
+    for device in alive_it(device_list, length=25, title='Processing PC'):
         name = device['name']
 
-# skip all the machines except the one specified on the command line
+        # skip all the machines except the one specified on the command line
         if pc is not None:
             if pc != name:
                 continue
 
+        # create a set of software for a given device
         id = device['id']
         pcsw = set()
 
         # get the installed software for a host
         softwares = dashboard.sm.getNetworkSmDeviceSoftwares(net, id)
 
+        # iterate through all the software and add it to the device list and all s/w seen
         for software in softwares:
             swname = software['name']
             pcsw.add(swname)
             all_software.add(swname)
 
+        # add the device, id, and list of software to the device list for easier printing
         devices.append((name, id, pcsw))
 
+    # use set math to easily remove apps that we don't want to see (if any)
     if SORT == 'apps':
         print ("Apps on systems")
         for app in sorted(all_software - sysapps):
