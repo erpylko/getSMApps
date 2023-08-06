@@ -8,6 +8,7 @@ This python program leverages APIs to the Meraki dashboard to pull all the softw
 
 ## Features
 
+* Progress bar because the querying the dashboard can be slow
 * No error checking. Get your command line options right 
 * API key can be specified via environment variable, CLI, or variable
 
@@ -16,6 +17,7 @@ This python program leverages APIs to the Meraki dashboard to pull all the softw
 This app leverages the following APIs and packages:
  * meraki v1.34.0 for access to the dashboard
  * plac v1.3.5 for CLI option parsing
+ * alive-progress v3.1.4 for progress bar
 
 ### Cisco Products / Services
 
