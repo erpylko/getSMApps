@@ -43,6 +43,13 @@ import time
 #NET_ID  = ''
 
 #
+# only print things if quiet has not been set
+#
+def qprint(quiet, text):
+    if not quiet:
+        print(text)
+
+#
 # read in the app names to ignore
 # file has one app name/line
 #
@@ -80,7 +87,8 @@ def setKey(key):
 @plac.opt('net',    "Network ID",             type=str)
 @plac.opt('pc',     "List apps for 1 pc",     type=str)
 @plac.opt('ignore', "List of apps to ignore", type=str)
-def main(SORT, apikey, net, pc, ignore):
+@plac.flg('quiet',  "Only output apps"                )
+def main(SORT, apikey, net, pc, ignore, quiet):
     """Report apps in a Meraki Systems Manager network"""
     
     if apikey is None:
@@ -95,11 +103,12 @@ def main(SORT, apikey, net, pc, ignore):
         sysapps = ignoreList(ignore)
 
     # create dashboard object
-    print("Connecting to Meraki Dashboard...")
+    qprint(quiet, "Connecting to Meraki Dashboard...")
     dashboard = meraki.DashboardAPI(apikey, output_log=False, suppress_logging=True)
   
     # get a list of all devices
-    print("Gathering devices...")
+
+    qprint(quiet, "Gathering devices...")
     device_list = dashboard.sm.getNetworkSmDevices(net)
 
     # create a list that includes device name, id, apps
@@ -109,7 +118,7 @@ def main(SORT, apikey, net, pc, ignore):
     all_software = set()
 
     # iterate through all devices, build the list of all software in the net
-    for device in alive_it(device_list, length=25, title='Processing PC'):
+    for device in alive_it(device_list, length=25, title='Processing PC', disable=quiet):
         name = device['name']
 
         # skip all the machines except the one specified on the command line
@@ -135,12 +144,12 @@ def main(SORT, apikey, net, pc, ignore):
 
     # use set math to easily remove apps that we don't want to see (if any)
     if SORT == 'apps':
-        print ("Apps on systems")
+        qprint (quiet, "Apps on systems")
         for app in sorted(all_software - sysapps):
             print("  ",app)
     else:
         for (name,id,pcsw) in sorted(devices):
-            print(name)
+            qprint(quiet, name)
             for item in sorted(pcsw - sysapps):
               print("  ",item)
 
