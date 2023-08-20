@@ -94,8 +94,16 @@ def main(SORT, apikey, net, pc, ignore, quiet):
     if apikey is None:
         apikey = setKey('API_KEY')
 
+    if apikey is None:
+        print("Need to set APIKEY. Exiting.")
+        exit ()
+
     if net is None:
         net = setKey('NET_ID')
+
+    if net is None:
+        print("Need to set NET_ID. Exiting.")
+        exit ()
 
     if ignore is None:
         sysapps = set()
