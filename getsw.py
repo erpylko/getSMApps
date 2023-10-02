@@ -28,10 +28,11 @@ from alive_progress import alive_it
 import os
 import time
 
+
 #
 # The API key and network ID can be used multiple ways.
 #
-#   - specifed as environment variable
+#   - specified as environment variable
 #   - specified on cli
 #   - specified in app
 #
@@ -56,13 +57,12 @@ def qprint(quiet, text):
 def ignoreList(textfile):
     appList = set()
 
-    f = open(textfile, 'r')
-    lines = f.readlines()
+    ignore = open(textfile, 'r')
 
-    for app in lines:
+    for app in ignore:
         appList.add(app.strip())
 
-    f.close()
+    ignore.close()
 
     return (appList)
 
